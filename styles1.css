@@ -6,9 +6,31 @@ body {
     font-family: 'Lora', serif;
 }
 
+@media only screen and (max-width: 1000px) {
+    body {
+      height: auto;
+    }
+  }
+
 h1, h2, h3, h4 {
-    margin: 5px;
+    margin: 15px;
 }
+
+@media only screen and (max-width: 600px) {
+    h1, h2, h3, h4 {
+      font-size: 1em;
+      margin: 4px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    h1, h2, h3, h4 {
+      font-size: 0.8em;
+      margin: 2px;
+    }
+  }
+
+
 
 .container {
     width: 100%;
@@ -35,10 +57,10 @@ h1, h2, h3, h4 {
 .topDisplay {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 100%;
     margin: 5px;
     margin-bottom: 20px;
-    background:#895061;
+    background:#8fc1e3;
     border-radius: 5px;
     
 }
@@ -51,12 +73,50 @@ h1, h2, h3, h4 {
     margin-left: 10px;
 }
 
+@media only screen and (max-width: 1000px) {
+    .title {
+        background-color:#687864;
+        width: 100%;
+        color: white;
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    .topDisplay {
+        margin-bottom: 10px;
+    }
+
+    .topSection {
+        align-items: flex-start;
+    }
+
+
+    .welcome {
+      display: none;
+    }
+    .topSection span {
+
+    }
+  }
+
 .columns {
     display: inline-flex;
     justify-content: center;
     height: 100%;
     background: #8fc1e3;
 }
+
+@media only screen and (max-width: 1000px) {
+    .columns {
+      display: block;
+      width: 100vw;
+      /* flex-direction: ; */
+    }
+  }
 
 .dayWindow, .logSection {
     width: 40%;
@@ -73,7 +133,6 @@ h1, h2, h3, h4 {
 }
 
 
-
 .logSection {
     margin-right: 50px;
 }
@@ -82,6 +141,39 @@ h1, h2, h3, h4 {
     width: 15%;
 }
 
+@media only screen and (max-width: 1000px) {
+    .dayWindow, .logSection {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+      /* flex-direction: ; */
+    }
+
+    .addTask {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .add-items {
+        width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+ 
+    .add-items {
+        width: 70%;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+ 
+    .add-items {
+        width: 100%;
+    }
+  }
 
 /* form */
 
@@ -118,6 +210,13 @@ footer {
 
 }
 
+@media only screen and (max-width: 600px) {
+    .title {
+      padding-bottom: 5px;
+      padding-top: 5px;
+    }
+}
+
 .taskSection1 {
     display: flex;
     flex-direction: column;
@@ -133,22 +232,32 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 20%;
+    margin-right: 10px;
+}
+
+.taskBottoms > .myButton {
+    width: 100%;
+}
+
+.bckgBLUE {
+    background-color: #8fc1e3;
 }
 
 .TUTORIAL {
-    background-color: #31708e;
+    background-color: #f674a4;
 }
 
 .READING {
-    background-color: #5085a5;
+    background-color: #a1ce5b;
 }
 
 .CODING_CHALLANGE {
-    background-color: #895061;
+    background-color: #f0bb4b;
 }
 
 .PROJECT {
-    background-color: #78244c;
+    background-color: #66b3cc;
 }
 
 /*  INPUT SCREEN */
@@ -196,20 +305,21 @@ footer {
 /* buttons */
 
 .myButton {
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	/* box-shadow:inset 0px 1px 0px 0px #bbdaf7;
 	
 	background-color:#687864;
 	border-radius:6px;
-	border:1px solid #84bbf3;
+	border:1px solid #84bbf3; */
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
+	/* color:#ffffff; */
 	font-family:Arial;
 	font-size:15px;
 	font-weight:bold;
 	padding:6px 24px;
-	text-decoration:none;
-    text-shadow:0px 1px 0px #528ecc;
+    text-decoration:none;
+    border-radius: 5px;
+    /* text-shadow:0px 1px 0px #528ecc; */
     
 }
 .myButton:hover {
@@ -220,6 +330,32 @@ footer {
 	position:relative;
 	top:1px;
 }
+
+@media only screen and (max-width: 800px) {
+    .myButton {
+        font-size:auto;
+        font-weight:normal;
+        padding:0;
+      /* flex-direction: ; */
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    .myButton {
+        font-size:0.8em;
+     
+      /* flex-direction: ; */
+    }
+  }
+
+  @media only screen and (max-width: 230px) {
+    .myButton {
+        font-size:0.6em;
+     
+      /* flex-direction: ; */
+    }
+  }
+
 /* log section bts */
 .logBtns {
     width: 100%;
@@ -227,10 +363,31 @@ footer {
     justify-content: space-between;
 }
 
+.logBtnClass {
+    width: 30%;
+}
+
 .logLive {
     height: 100%;
 }
 
+@media only screen and (max-width: 600px) {
+    .myButton {
+        font-size:0.8em;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .myButton {
+        font-size: 0.7em;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .logBtnClass {
+        width: 50%;
+    }
+  }
 /* footer */
 
 footer {
@@ -272,6 +429,20 @@ footer a {
     animation: pulse 2s infinite;
     
   }
+
+  @media only screen and (max-width: 800px) {
+    .contactlinks {
+        font-size:1.3em;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .contactlinks {
+        font-size: 1em;
+    }
+  }
+
+ 
     
   @keyframes pulse {
     0% {

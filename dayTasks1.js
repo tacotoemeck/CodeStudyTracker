@@ -124,28 +124,18 @@ function populateToDo(tasks = [], taskList) {
 
 addItems.addEventListener('submit', addItem)
 
-// create a function to add a result into a task
-
-// below function changes the object in an itemList and populates resultUrl with a new value. It then refreshes the whole list
+// add notes and result
 
 function addResultURL(e) {
-    // add result url
     
     if (!e.target.matches('.taskURLSubmit') ) return;
     
     else {
-        // e.preventDefault()
-        let resultUrlInput = (this.querySelector('[name=resultInput]')).value; 
-        
-        // find index of the item in listItems arr
+        e.preventDefault()
+        let resultUrlInput = (e.target.parentNode.childNodes[1]).value; 
         let index = e.target.parentNode.parentNode.dataset.index;  
-        // remove orginal
-        // resultArea.parentNode.removeChild(resultArea);
-        // amend the result section with the new url
         listItems[index].resultUrl = `${resultUrlInput}`;
         listItems[index].result = true;
-        // refresh the page section
-        
 
 
         populateToDo(listItems, dayTasks);
@@ -153,13 +143,11 @@ function addResultURL(e) {
 }
 dayTasks.addEventListener('click', addResultURL);
 
-// ADD NOTES
-
 function addNotes(e) {
     if (!e.target.matches('.notesSubmit') ) return;
-    else {
-        let notesInputSection = (this.querySelector('[name=notesInput]')).value; 
-      
+    else { 
+        e.preventDefault()
+        let notesInputSection = (e.target.parentNode.childNodes[1]).value; 
         let index = e.target.parentNode.parentNode.dataset.index;   
         listItems[index].notes = `${notesInputSection}`;
         listItems[index].notesSubmited = true;
@@ -170,8 +158,6 @@ function addNotes(e) {
 dayTasks.addEventListener('click', addNotes);
 
 
-
-
 // dayTasks.addEventListener('click', getIndexItem);
 
 // below function after click seraches if element clicked "matches" class of .deleteButtonClass if no it returns , if yes it walks up the node tree to the parent div 
@@ -180,11 +166,13 @@ dayTasks.addEventListener('click', addNotes);
 function deleteTask(e) {
     if (!e.target.matches('.deleteButtonClass')) return;
     else {
+        taskInProgress = false;
         let targetElem = e.target;
         let index = e.target.parentNode.parentNode.dataset.index;
         listItems.splice(index,1);
         
         populateToDo(listItems, dayTasks);
+        updateCurrentTaskDisplay() 
 
         deleteFromLocal(localStorage.listItems, index)
 
@@ -247,7 +235,6 @@ function submitFinal(e) {
         taskFinishedAt = Date.now();
 
         let taskTime = Math.ceil((taskFinishedAt - now ) / 60000);
-        
         
         listItems[index].timeCompleted = (!isNaN(taskTime)) ? taskTime : 0;
         listItems[index].taskScreenDisplay = '';
@@ -447,22 +434,27 @@ function updateCurrentTaskDisplay() {
     currentTaskElement.innerHTML = currentTask;
 
     if(currentTask == "TUTORIAL - JavaScript.info") {
-        topDiplay.classList.toggle('TUTORIAL')
+        // topDiplay.classList.toggle('TUTORIAL')
+        topDiplay.style.backgroundColor  = '#f674a4';
     }
     else if(currentTask == "READING - JavaScript.info") {
-        topDiplay.classList.toggle('READING')
+        // topDiplay.classList.toggle('READING')
+        topDiplay.style.backgroundColor  = '#a1ce5b';
     }
     else if(currentTask == "CODING_CHALLANGE - JavaScript.info") {
-        topDiplay.classList.toggle('CODING_CHALLANGE')
+        // topDiplay.classList.toggle('CODING_CHALLANGE')
+        topDiplay.style.backgroundColor  = '#f0bb4b';
     }
     else if(currentTask == "PROJECT - JavaScript.info") {
-         topDiplay.classList.toggle('PROJECT')
+        //  topDiplay.classList.toggle('PROJECT')
+        topDiplay.style.backgroundColor  = '#66b3cc';
     }
     }
     else {
+
         currentTaskElement.innerHTML = '';
         timerDisplay.innerHTML = '';
-
+        topDiplay.style.backgroundColor  = '#8fc1e3';
     }
 
 
@@ -478,19 +470,13 @@ function accumulateAllCodingTime() {
 
 function todayDate() {
     today = new Date();
-    
-    
+ 
     dateFormated = `${today.getDate()} / ${today.getMonth()+1} / ${today.getFullYear()}`;
     displayDate.innerHTML = dateFormated;
     
-
 }
 
 todayDate()
-
-
-
-
 
 // add a function to count and display completed tasks
 
@@ -498,11 +484,6 @@ function countCompletedTasks() {
     completedTasksCounterDisplay.innerHTML = completedTasksCounter;
 }
 
-// countCompletedTasks()
-
-
-
- 
 
 // add to clipboard
 
@@ -568,6 +549,17 @@ function clearToplog() {
 }
 
 clearSummaryBtn.addEventListener('click', clearToplog)
+
+// 
+
+const clearMainLogBtn = document.querySelector('.clearLogdBtn');
+
+function clearMainLog() {
+    localStorage.removeItem('logEntry');
+    logLiveSection.innerHTML='';
+}
+
+clearMainLogBtn.addEventListener('click', clearMainLog)
 
 
 
